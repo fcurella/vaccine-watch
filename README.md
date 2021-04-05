@@ -119,4 +119,7 @@ Optional Environment Variables:
 You can build a docker image with the Dockerfile, and run it with a redis server.
 
 ### Heroku
+
 You can create an app in heroku, add a free redis plan, and push the source. Configure the dynos to enable `clock`.
+
+<a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy" /></a>

@@ -1,0 +1,161 @@
+{
+    "name": "Vaccine Watch",
+    "description": "Bot to notify when vaccine appointments are available.",
+    "repository": "https://github.com/fcurella/vaccine-watch",
+    "addons": [
+      {
+        "plan": "heroku-redis:hobby-dev",
+        "as": "REDIS_URL"
+      }
+    ],
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ],
+    "keywords": ["python", "covid", "bot", "vaccine"],
+    "scripts": {
+      "postdeploy": "./manage.py migrate --no-input && ./manage.py createsuperuser --no-input"
+    },
+    "formation": {
+      "clock": {
+        "quantity": 1,
+        "size": "free"
+      }
+    },
+    "env": {
+        "VACCINE_CHECK_INTERVAL": {
+            "value": "60",
+            "description": "How often (in seconds) to check"
+        },
+        "RADIUS": {
+            "value": "25",
+            "description": "Within how many miles to check"
+        },
+        "LATITUDE": {
+            "value":"39.1040382",
+            "description": "Latitude of the location to check"
+        },
+        "LONGITUDE": {
+            "value": "-94.5701803",
+            "description": "Longitude of the location to check"
+        },
+        "STATES": {
+            "value": "[\"MO\", \"KS\"]",
+            "description": "JSON: Abbreviations of which states are in radius of your location"
+        },
+        "CACHE_PREFIX": {
+            "value": "",
+            "description": "If you want to run multiple copies of vaccine-watch, all sharing the same Redis database, you will want to give each instance a different CACHE_PREFIX",
+            "required": false
+        },
+        "REQUEST_TIMEOUT": {
+            "value": "5",
+            "description": "How long to wait, in seconds, for a response to begin before timing out",
+            "required": false
+        },
+        "ENABLE_HYVEE": {
+            "value": true,
+            "description": "If you want to check Hy-Vee pharmacies",
+            "required": false
+        },
+        "ENABLE_HYVEE": {
+            "value": true,
+            "description": "If you want to check Hy-Vee pharmacies",
+            "required": false
+        },
+        "ENABLE_HYVEE": {
+            "value": true,
+            "description": "If you want to check Hy-Vee pharmacies",
+            "required": false
+        },
+        "ENABLE_WALGREENS": {
+            "value": true,
+            "description": "If you want to check Walgreens pharmacies",
+            "required": false
+        },
+        "ENABLE_WALMART": {
+            "value": true,
+            "description": "If you want to check Walmart pharmacies",
+            "required": false
+        },
+        "ENABLE_COSENTINOS": {
+            "value": true,
+            "description": "If you want to check stores in the Cosentino's family (KC only)",
+            "required": false
+        },
+        "ENABLE_BALLS": {
+            "value": true,
+            "description": "If you want to check stores in the Ball's family (KC only)",
+            "required": false
+        },
+        "ENABLE_CVS": {
+            "value": true,
+            "description": "If you want to check CVS pharmacies",
+            "required": false
+        },
+        "CVS_ALLOW_LIST": {
+            "value": "{\"MO\": [\"SAINT LOUIS\"], \"KS\": []}",
+            "description": "JSON of states and cities to be notified for",
+            "required": false
+        },
+        "CVS_BLOCK_LIST": {
+            "value": "{\"MO\": [], \"KS\": []}",
+            "description": "JSON of states and cities to not be warned about",
+            "required": false
+        },
+        "SLACK_BOT_TOKEN": {
+            "description": "Token for your slack integration",
+            "required": false
+        },
+        "SLACK_TAG_CHANNEL": {
+            "description": "If the channel should be tagged when appointments are available",
+            "required": false
+        },
+        "SLACK_CHANNEL": {
+            "description": "Channel for the bot to post in (e.g. `#vaccine-watch`)",
+            "required": false
+        },
+        "DISCORD_WEBHOOK_URL": {
+            "description": "Discord webhook url for channel",
+            "required": false
+        },
+        "TEAMS_WEBHOOK_URL": {
+            "description": "Teams webhook url for channel",
+            "required": false
+        },
+        "TWILIO_ACCOUNT_SID": {
+            "description": "Account SID for your twilio account",
+            "required": false
+        },
+        "TWILIO_AUTH_TOKEN" : {
+            "description": "Auth token for your twilio account",
+            "required": false
+        },
+        "TWILIO_FROM_NUMBER" : {
+            "description": "Twilio phone number with SMS functionality in `[+][country code][phone number including area code]` format",
+            "required": false
+        },
+        "TWILIO_TO_NUMBERS" : {
+            "description": "Phone numbers to notify as an array of the following format `[+][country code][phone number including area code]`",
+            "required": false
+        },
+        "TWITTER_CONSUMER_KEY" : {
+            "required": false
+        },
+        "TWITTER_CONSUMER_SECRET" : {
+            "required": false
+        },
+        "TWITTER_ACCESS_TOKEN_KEY" : {
+            "required": false
+        },
+        "TWITTER_ACCESS_TOKEN_SECRET" : {
+            "required": false
+        },
+        "TIMEZONE" : {
+            "description": "Timezone of your location",
+            "value": "US/Central",
+            "required": false
+        }
+    }
+}

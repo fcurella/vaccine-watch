@@ -77,7 +77,7 @@ Required Environment Variables:
 - `RADIUS`: Within how many miles to check
   - CVS has a maximum of 25, vaccine-watch will use 25 for CVS if you set this higher.
 - `LATITUDE`: Latitude of the location to check (e.g. `39.1040382`)
-- `LONGITUDE`: Latitude of the location to check (e.g. `-94.5701803`)
+- `LONGITUDE`: Longitude of the location to check (e.g. `-94.5701803`)
 - `STATES`: JSON: Abbreviations of which states are in radius of your location (e.g. `["MO", "KS"]`)
 
 Optional Environment Variables:
@@ -91,7 +91,7 @@ Optional Environment Variables:
   - `ENABLE_CVS`: If you want to check CVS pharmacies
   - `CVS_ALLOW_LIST`: JSON of states and cities to be notified for.
     - example: `{"MO": ["SAINT LOUIS"], "KS": []}`
-  - `CVS_BLOCK_LIST`: (optional): JSON of states and cities to not be warned about new city for.
+  - `CVS_BLOCK_LIST`: (optional): JSON of states and cities to not be warned about.
     - example: `{"MO": ["SAINT LOUIS"], "KS": []}`
   - Any city that CVS returns for the state(s) in `STATES` that are not listed in either the allow or block list will cause a warning message to be logged. Then it may be added to the allow or block list depending on if you wish to have the locations in that city checked or not checked.
 - Slack:
@@ -119,4 +119,7 @@ Optional Environment Variables:
 You can build a docker image with the Dockerfile, and run it with a redis server.
 
 ### Heroku
+
 You can create an app in heroku, add a free redis plan, and push the source. Configure the dynos to enable `clock`.
+
+<a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy" /></a>
